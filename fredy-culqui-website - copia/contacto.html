@@ -1,0 +1,811 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contacto - Fredy Culqui</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/navbar.css">
+    <link rel="stylesheet" href="css/responsive.css">
+    <style>
+        :root {
+            --primary: #ffffff;
+            --secondary: #b0b0b0;
+            --accent: #ff6600;
+            --bg-dark: #0a0a0a;
+            --bg-darker: #050505;
+            --transition-base: 0.3s ease;
+        }
+
+        .contact-hero {
+            padding: 140px 1rem 80px;
+            background: linear-gradient(135deg, rgba(10, 10, 10, 0.98), rgba(20, 20, 20, 0.95));
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .contact-hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: radial-gradient(circle at 30% 50%, rgba(255, 102, 0, 0.1) 0%, transparent 50%);
+            z-index: 1;
+        }
+
+        .contact-hero .container {
+            position: relative;
+            z-index: 2;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .contact-hero h1 {
+            font-size: 3.5rem;
+            font-weight: 300;
+            margin-bottom: 1rem;
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .contact-hero .subtitle {
+            font-size: 1.2rem;
+            color: var(--secondary);
+            font-weight: 300;
+            line-height: 1.6;
+            max-width: 600px;
+            margin: 0 auto 2rem;
+        }
+
+        .hero-features {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            flex-wrap: wrap;
+        }
+
+        .feature {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            color: var(--secondary);
+        }
+
+        .feature i {
+            color: var(--accent);
+        }
+
+        .contact-main {
+            padding: 80px 0;
+            background: var(--bg-dark);
+        }
+
+        .contact-grid {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 1.5rem;
+            display: grid;
+            grid-template-columns: 1fr 400px;
+            gap: 3rem;
+        }
+
+        /* FORMULARIO */
+        .contact-form-container {
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 20px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            padding: 2.5rem;
+            backdrop-filter: blur(20px);
+        }
+
+        .form-header {
+            text-align: center;
+            margin-bottom: 2rem;
+        }
+
+        .form-header h2 {
+            font-size: 2rem;
+            margin-bottom: 0.5rem;
+            color: var(--primary);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.5rem;
+        }
+
+        .form-header p {
+            color: var(--secondary);
+            line-height: 1.6;
+        }
+
+        .contact-form {
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+        }
+
+        .form-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1rem;
+        }
+
+        .form-group {
+            display: flex;
+            flex-direction: column;
+        }
+
+        label {
+            margin-bottom: 0.5rem;
+            color: var(--primary);
+            font-weight: 500;
+        }
+
+        input, select, textarea {
+            padding: 0.75rem 1rem;
+            background: rgba(255, 255, 255, 0.1);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            border-radius: 8px;
+            color: var(--primary);
+            font-size: 1rem;
+            transition: all var(--transition-base);
+        }
+
+        input:focus, select:focus, textarea:focus {
+            outline: none;
+            border-color: var(--accent);
+            background: rgba(255, 255, 255, 0.15);
+        }
+
+        textarea {
+            resize: vertical;
+            min-height: 120px;
+        }
+
+        .help-text {
+            margin-top: 0.5rem;
+            color: var(--secondary);
+            font-size: 0.8rem;
+        }
+
+        .checkbox-group {
+            flex-direction: row;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .checkbox-group input {
+            width: auto;
+        }
+
+        .checkbox-group label {
+            margin-bottom: 0;
+            font-weight: normal;
+        }
+
+        .form-actions {
+            text-align: center;
+        }
+
+        .form-note {
+            text-align: center;
+            color: var(--secondary);
+            margin-top: 1rem;
+            font-size: 0.9rem;
+        }
+
+        /* INFORMACIÓN DE CONTACTO */
+        .contact-info-sidebar {
+            display: flex;
+            flex-direction: column;
+            gap: 2rem;
+        }
+
+        .contact-info-card, .social-contact-card, .faq-card {
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 15px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            padding: 2rem;
+            backdrop-filter: blur(20px);
+        }
+
+        .contact-info-card h3, .social-contact-card h3, .faq-card h3 {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            margin-bottom: 1.5rem;
+            color: var(--primary);
+        }
+
+        .contact-methods {
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+        }
+
+        .contact-method {
+            display: flex;
+            align-items: flex-start;
+            gap: 1rem;
+        }
+
+        .method-icon {
+            width: 50px;
+            height: 50px;
+            background: rgba(255, 102, 0, 0.1);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.2rem;
+            color: var(--accent);
+            flex-shrink: 0;
+        }
+
+        .method-info h4 {
+            color: var(--primary);
+            margin-bottom: 0.25rem;
+        }
+
+        .method-info a {
+            color: var(--accent);
+            text-decoration: none;
+            font-weight: 500;
+            display: block;
+            margin-bottom: 0.25rem;
+        }
+
+        .method-info small {
+            color: var(--secondary);
+            font-size: 0.8rem;
+        }
+
+        /* REDES SOCIALES */
+        .social-contact-links {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+        }
+
+        .social-link {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            padding: 1rem;
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 12px;
+            text-decoration: none;
+            color: var(--primary);
+            transition: all var(--transition-base);
+            border: 1px solid transparent;
+        }
+
+        .social-link:hover {
+            background: rgba(255, 255, 255, 0.1);
+            transform: translateY(-2px);
+            border-color: rgba(255, 102, 0, 0.3);
+        }
+
+        .social-link i {
+            width: 40px;
+            height: 40px;
+            background: rgba(255, 102, 0, 0.1);
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.2rem;
+            color: var(--accent);
+            flex-shrink: 0;
+        }
+
+        .social-link span {
+            font-weight: 500;
+            flex: 1;
+        }
+
+        .social-link small {
+            color: var(--secondary);
+            font-size: 0.8rem;
+        }
+
+        .social-link.instagram:hover {
+            border-color: rgba(225, 48, 108, 0.3);
+        }
+
+        .social-link.tiktok:hover {
+            border-color: rgba(0, 0, 0, 0.3);
+        }
+
+        .social-link.facebook:hover {
+            border-color: rgba(59, 89, 152, 0.3);
+        }
+
+        /* FAQ */
+        .faq-list {
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+        }
+
+        .faq-item h4 {
+            color: var(--primary);
+            margin-bottom: 0.5rem;
+            font-size: 1rem;
+        }
+
+        .faq-item p {
+            color: var(--secondary);
+            line-height: 1.6;
+            font-size: 0.9rem;
+        }
+
+        /* MAPA */
+        .map-section {
+            padding: 60px 0;
+            background: rgba(15, 15, 15, 0.8);
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+
+        .section-header h2 {
+            font-size: 2.5rem;
+            font-weight: 300;
+            margin-bottom: 1rem;
+            color: var(--primary);
+        }
+
+        .section-header p {
+            color: var(--secondary);
+            font-size: 1.1rem;
+        }
+
+        .map-container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 0 1.5rem;
+        }
+
+        .map-placeholder {
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 15px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            padding: 3rem 2rem;
+            text-align: center;
+            margin-bottom: 2rem;
+        }
+
+        .map-placeholder i {
+            font-size: 3rem;
+            color: var(--accent);
+            margin-bottom: 1rem;
+        }
+
+        .map-placeholder h3 {
+            color: var(--primary);
+            margin-bottom: 0.5rem;
+        }
+
+        .map-placeholder p {
+            color: var(--secondary);
+        }
+
+        .coverage-areas {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1rem;
+            justify-content: center;
+        }
+
+        .area-tag {
+            background: rgba(255, 102, 0, 0.1);
+            color: var(--accent);
+            padding: 0.5rem 1rem;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            border: 1px solid rgba(255, 102, 0, 0.3);
+        }
+
+        /* RESPONSIVE */
+        @media (max-width: 968px) {
+            .contact-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .contact-info-sidebar {
+                order: -1;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .contact-hero h1 {
+                font-size: 2.5rem;
+            }
+            
+            .form-row {
+                grid-template-columns: 1fr;
+            }
+            
+            .hero-features {
+                flex-direction: column;
+                gap: 1rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .contact-hero {
+                padding: 120px 1rem 60px;
+            }
+            
+            .contact-hero h1 {
+                font-size: 2rem;
+            }
+            
+            .contact-form-container {
+                padding: 2rem;
+            }
+            
+            .section-header h2 {
+                font-size: 2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- NAVBAR -->
+    <nav>
+        <div class="logo">
+            <a href="index.html" style="color: inherit; text-decoration: none;">Fredy Culqui</a>
+        </div>
+        <i class="fas fa-bars menu-toggle"></i>
+        <ul>
+            <li><a href="index.html">Inicio</a></li>
+            <li><a href="sobre-mi.html">Sobre Mí</a></li>
+            <li><a href="portafolio.html">Portafolio</a></li>
+            <li><a href="paquetes.html">Paquetes</a></li>
+            <li><a href="agendar.html">Agendar</a></li>
+            <li><a href="contacto.html" class="active">Contacto</a></li>
+            <li><a href="login.html" class="btn-login">Iniciar Sesión</a></li>
+        </ul>
+    </nav>
+
+    <!-- HERO SECTION -->
+    <section class="contact-hero">
+        <div class="container">
+            <h1>Contacto</h1>
+            <p class="subtitle">Hablemos sobre tu próximo proyecto fotográfico</p>
+            <div class="hero-features">
+                <div class="feature">
+                    <i class="fas fa-reply"></i>
+                    <span>Respuesta en 24h</span>
+                </div>
+                <div class="feature">
+                    <i class="fas fa-comments"></i>
+                    <span>Asesoría gratuita</span>
+                </div>
+                <div class="feature">
+                    <i class="fas fa-lightbulb"></i>
+                    <span>Ideas creativas</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CONTENIDO PRINCIPAL -->
+    <section class="contact-main">
+        <div class="contact-grid">
+            <!-- FORMULARIO DE CONTACTO -->
+            <div class="contact-form-container">
+                <div class="form-header">
+                    <h2><i class="fas fa-envelope"></i> Envíame un Mensaje</h2>
+                    <p>Completa el formulario y me pondré en contacto contigo lo antes posible</p>
+                </div>
+
+                <form id="contactForm" class="contact-form">
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="contactName">Nombre Completo</label>
+                            <input type="text" id="contactName" name="name" required placeholder="Tu nombre completo">
+                        </div>
+                        <div class="form-group">
+                            <label for="contactEmail">Correo Electrónico</label>
+                            <input type="email" id="contactEmail" name="email" required placeholder="tu@email.com">
+                        </div>
+                    </div>
+
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="contactPhone">Teléfono / WhatsApp</label>
+                            <input type="tel" id="contactPhone" name="phone" placeholder="+51 XXX XXX XXX">
+                        </div>
+                        <div class="form-group">
+                            <label for="contactSubject">Asunto</label>
+                            <select id="contactSubject" name="subject" required>
+                                <option value="">Selecciona un asunto</option>
+                                <option value="consulta-general">Consulta General</option>
+                                <option value="presupuesto-sesion">Presupuesto para Sesión</option>
+                                <option value="colaboracion">Propuesta de Colaboración</option>
+                                <option value="preguntas-tecnicas">Preguntas Técnicas</option>
+                                <option value="otro">Otro</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="contactService">Tipo de Servicio Interesado</label>
+                        <select id="contactService" name="service">
+                            <option value="">Selecciona un servicio</option>
+                            <option value="retratos">Retratos Individuales</option>
+                            <option value="pareja">Sesión de Parejas</option>
+                            <option value="familiar">Sesión Familiar</option>
+                            <option value="15-anos">15 Años</option>
+                            <option value="boda">Bodas</option>
+                            <option value="embarazo">Sesión de Embarazo</option>
+                            <option value="producto">Fotografía de Producto</option>
+                            <option value="audiovisual">Producción Audiovisual</option>
+                            <option value="evento">Evento Especial</option>
+                            <option value="edicion">Servicio de Edición</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="contactPaquete">Paquete de Interés</label>
+                        <select id="contactPaquete" name="paquete">
+                            <option value="">Selecciona un paquete</option>
+                            <option value="esencial">Esencial - S/ 280</option>
+                            <option value="profesional">Profesional - S/ 450</option>
+                            <option value="premium">Premium - S/ 750</option>
+                            <option value="personalizado">Personalizado</option>
+                            <option value="indefinido">Aún no decido</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="contactMessage">Mensaje</label>
+                        <textarea id="contactMessage" name="message" required placeholder="Cuéntame sobre tu proyecto, ideas, fechas estimadas, ubicación, y cualquier detalle que consideres importante..."></textarea>
+                        <small class="help-text">Mientras más detalles proporciones, mejor podré entender tu visión</small>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="contactBudget">Presupuesto Estimado</label>
+                        <select id="contactBudget" name="budget">
+                            <option value="">Selecciona un rango</option>
+                            <option value="menos-200">Menos de S/ 200</option>
+                            <option value="200-400">S/ 200 - S/ 400</option>
+                            <option value="400-600">S/ 400 - S/ 600</option>
+                            <option value="600-800">S/ 600 - S/ 800</option>
+                            <option value="mas-800">Más de S/ 800</option>
+                            <option value="por-definir">Por definir</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group checkbox-group">
+                        <input type="checkbox" id="contactNewsletter" name="newsletter">
+                        <label for="contactNewsletter">Deseo recibir novedades sobre promociones y nuevos trabajos</label>
+                    </div>
+
+                    <div class="form-actions">
+                        <button type="submit" class="btn btn-primary btn-large">
+                            <i class="fas fa-paper-plane"></i>
+                            Enviar Mensaje
+                        </button>
+                        <p class="form-note">
+                            Te responderé en un máximo de 24 horas hábiles.
+                        </p>
+                    </div>
+                </form>
+            </div>
+
+            <!-- INFORMACIÓN DE CONTACTO -->
+            <div class="contact-info-sidebar">
+                <!-- INFORMACIÓN DE CONTACTO DIRECTA -->
+                <div class="contact-info-card">
+                    <h3><i class="fas fa-address-card"></i> Información de Contacto</h3>
+                    <div class="contact-methods">
+                        <div class="contact-method">
+                            <div class="method-icon">
+                                <i class="fas fa-envelope"></i>
+                            </div>
+                            <div class="method-info">
+                                <h4>Email</h4>
+                                <a href="mailto:fredyculqui@gmail.com">fredyculqui@gmail.com</a>
+                                <small>Respuesta en 24h</small>
+                            </div>
+                        </div>
+                        <div class="contact-method">
+                            <div class="method-icon">
+                                <i class="fab fa-whatsapp"></i>
+                            </div>
+                            <div class="method-info">
+                                <h4>WhatsApp</h4>
+                                <a href="https://wa.me/51967620685" target="_blank">+51 967 620 685</a>
+                                <small>Respuesta inmediata</small>
+                            </div>
+                        </div>
+                        <div class="contact-method">
+                            <div class="method-icon">
+                                <i class="fas fa-phone"></i>
+                            </div>
+                            <div class="method-info">
+                                <h4>Teléfono</h4>
+                                <a href="tel:+51967620685">+51 967 620 685</a>
+                                <small>Lunes a Viernes 9am-6pm</small>
+                            </div>
+                        </div>
+                        <div class="contact-method">
+                            <div class="method-icon">
+                                <i class="fas fa-map-marker-alt"></i>
+                            </div>
+                            <div class="method-info">
+                                <h4>Ubicación</h4>
+                                <span>Cajamarca, Perú</span>
+                                <small>Studio & Exteriores</small>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- REDES SOCIALES -->
+                <div class="social-contact-card">
+                    <h3><i class="fas fa-share-alt"></i> Sígueme en Redes</h3>
+                    <div class="social-contact-links">
+                        <a href="https://www.instagram.com/fredy_culqui" target="_blank" class="social-link instagram">
+                            <i class="fab fa-instagram"></i>
+                            <span>Instagram</span>
+                            <small>@fredy_culqui</small>
+                        </a>
+                        <a href="https://www.tiktok.com/@fredy_culqui" target="_blank" class="social-link tiktok">
+                            <i class="fab fa-tiktok"></i>
+                            <span>TikTok</span>
+                            <small>@fredy_culqui</small>
+                        </a>
+                        <a href="https://www.facebook.com/fredyculqui" target="_blank" class="social-link facebook">
+                            <i class="fab fa-facebook"></i>
+                            <span>Facebook</span>
+                            <small>Fredy Culqui</small>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- PREGUNTAS FRECUENTES -->
+                <div class="faq-card">
+                    <h3><i class="fas fa-question-circle"></i> Preguntas Frecuentes</h3>
+                    <div class="faq-list">
+                        <div class="faq-item">
+                            <h4>¿Cuánto tiempo toma una sesión?</h4>
+                            <p>Depende del tipo de sesión: Retratos (1-2h), Familiares (2-3h), 15 Años (3-4h).</p>
+                        </div>
+                        <div class="faq-item">
+                            <h4>¿Entregan todas las fotos?</h4>
+                            <p>Entrego una selección editada profesionalmente. El número varía según el tipo de sesión.</p>
+                        </div>
+                        <div class="faq-item">
+                            <h4>¿Trabajan fuera de Cajamarca?</h4>
+                            <p>Sí, con costos adicionales de transporte y alojamiento si es necesario.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- MAPA -->
+    <section class="map-section">
+        <div class="container">
+            <div class="section-header">
+                <h2>Zona de Trabajo</h2>
+                <p>Trabajo principalmente en Cajamarca y alrededores</p>
+            </div>
+            <div class="map-container">
+                <div class="map-placeholder">
+                    <i class="fas fa-map-marked-alt"></i>
+                    <h3>Área de Cobertura</h3>
+                    <p>Cajamarca Centro y alrededores</p>
+                </div>
+                <div class="coverage-areas">
+                    <span class="area-tag">Cajamarca Centro</span>
+                    <span class="area-tag">Baños del Inca</span>
+                    <span class="area-tag">Los Baños</span>
+                    <span class="area-tag">Cumbe Mayo</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer id="contacto">
+        <div class="footer-content">
+            <div class="footer-section">
+                <h3>Fredy Culqui</h3>
+                <p>Fotógrafo & Filmmaker profesional especializado en contar historias a través de la imagen.</p>
+                <div class="social-links">
+                    <a href="https://www.instagram.com/fredy_culqui" target="_blank">
+                        <i class="fab fa-instagram"></i>
+                    </a>
+                    <a href="https://www.tiktok.com/@fredy_culqui" target="_blank">
+                        <i class="fab fa-tiktok"></i>
+                    </a>
+                    <a href="mailto:fredyculqui@gmail.com">
+                        <i class="fas fa-envelope"></i>
+                    </a>
+                    <a href="https://wa.me/51967620685" target="_blank">
+                        <i class="fab fa-whatsapp"></i>
+                    </a>
+                </div>
+            </div>
+
+            <div class="footer-section">
+                <h4>Enlaces Rápidos</h4>
+                <ul>
+                    <li><a href="index.html">Inicio</a></li>
+                    <li><a href="sobre-mi.html">Sobre Mí</a></li>
+                    <li><a href="portafolio.html">Portafolio</a></li>
+                    <li><a href="paquetes.html">Paquetes</a></li>
+                    <li><a href="agendar.html">Agendar Sesión</a></li>
+                    <li><a href="contacto.html">Contacto</a></li>
+                </ul>
+            </div>
+
+            <div class="footer-section">
+                <h4>Servicios</h4>
+                <ul>
+                    <li><a href="portafolio.html?filter=retratos">Retratos</a></li>
+                    <li><a href="portafolio.html?filter=artistico">Artístico</a></li>
+                    <li><a href="portafolio.html?filter=15-anos">15 Años</a></li>
+                    <li><a href="portafolio.html?filter=audiovisual">Audiovisual</a></li>
+                </ul>
+            </div>
+
+            <div class="footer-section">
+                <h4>Contacto</h4>
+                <div class="contact-info">
+                    <p><i class="fas fa-envelope"></i> fredyculqui@gmail.com</p>
+                    <p><i class="fas fa-phone"></i> +51 967 620 685</p>
+                    <p><i class="fas fa-map-marker-alt"></i> Cajamarca, Perú</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="footer-bottom">
+            <p>&copy; 2025 Fredy Culqui. Todos los derechos reservados.</p>
+        </div>
+    </footer>
+
+    <script src="js/main.js"></script>
+    <script>
+        // Funcionalidad básica para el formulario de contacto
+        document.addEventListener('DOMContentLoaded', function() {
+            const contactForm = document.getElementById('contactForm');
+            
+            contactForm.addEventListener('submit', function(e) {
+                e.preventDefault();
+                
+                const submitBtn = contactForm.querySelector('button[type="submit"]');
+                const originalText = submitBtn.innerHTML;
+                
+                // Mostrar estado de carga
+                submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Enviando...';
+                submitBtn.disabled = true;
+                
+                // Simular envío
+                setTimeout(() => {
+                    alert('¡Mensaje enviado con éxito! Te contactaré dentro de las próximas 24 horas.');
+                    submitBtn.innerHTML = originalText;
+                    submitBtn.disabled = false;
+                    contactForm.reset();
+                }, 2000);
+            });
+        });
+    </script>
+</body>
+</html>
