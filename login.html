@@ -1,0 +1,912 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Iniciar Sesión - Fredy Culqui</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/navbar.css">
+    <link rel="stylesheet" href="css/responsive.css">
+    <style>
+        /* Estilos específicos para login */
+        .auth-page {
+            background: var(--bg-dark);
+            min-height: 100vh;
+        }
+
+        /* NAVBAR AUTH */
+        .auth-nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem 2rem;
+            background: rgba(10, 10, 10, 0.95);
+            backdrop-filter: blur(20px);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 1000;
+        }
+
+        .auth-nav .logo a {
+            color: var(--primary);
+            text-decoration: none;
+            font-size: 1.5rem;
+            font-weight: 600;
+        }
+
+        .back-home {
+            color: var(--secondary);
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            transition: color var(--transition-base);
+        }
+
+        .back-home:hover {
+            color: var(--accent);
+        }
+
+        /* HERO AUTH */
+        .auth-hero {
+            padding: 120px 1rem 60px;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+        }
+
+        .auth-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            width: 100%;
+        }
+
+        .auth-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            align-items: center;
+        }
+
+        /* FORMULARIO AUTH */
+        .auth-form-container {
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 20px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            padding: 3rem;
+            backdrop-filter: blur(20px);
+        }
+
+        .auth-header {
+            text-align: center;
+            margin-bottom: 2rem;
+        }
+
+        .auth-header h1 {
+            font-size: 2.5rem;
+            font-weight: 300;
+            margin-bottom: 0.5rem;
+            color: var(--primary);
+        }
+
+        .auth-header p {
+            color: var(--secondary);
+            line-height: 1.6;
+        }
+
+        .auth-form {
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+        }
+
+        .form-group {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .form-group label {
+            margin-bottom: 0.5rem;
+            color: var(--primary);
+            font-weight: 500;
+        }
+
+        .input-with-icon {
+            position: relative;
+        }
+
+        .input-with-icon i {
+            position: absolute;
+            left: 1rem;
+            top: 50%;
+            transform: translateY(-50%);
+            color: var(--secondary);
+        }
+
+        .input-with-icon input {
+            width: 100%;
+            padding: 0.75rem 1rem 0.75rem 3rem;
+            background: rgba(255, 255, 255, 0.1);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            border-radius: 8px;
+            color: var(--primary);
+            font-size: 1rem;
+            transition: all var(--transition-base);
+        }
+
+        .input-with-icon input:focus {
+            outline: none;
+            border-color: var(--accent);
+            background: rgba(255, 255, 255, 0.15);
+        }
+
+        .toggle-password {
+            position: absolute;
+            right: 1rem;
+            top: 50%;
+            transform: translateY(-50%);
+            background: none;
+            border: none;
+            color: var(--secondary);
+            cursor: pointer;
+            transition: color var(--transition-base);
+        }
+
+        .toggle-password:hover {
+            color: var(--accent);
+        }
+
+        /* OPCIONES DEL FORMULARIO */
+        .form-options {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin: -0.5rem 0;
+        }
+
+        .remember-me {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .remember-me input[type="checkbox"] {
+            width: auto;
+        }
+
+        .remember-me label {
+            margin-bottom: 0;
+            font-weight: normal;
+            color: var(--secondary);
+            font-size: 0.9rem;
+        }
+
+        .forgot-password {
+            color: var(--accent);
+            text-decoration: none;
+            font-size: 0.9rem;
+            transition: color var(--transition-base);
+        }
+
+        .forgot-password:hover {
+            color: #ff8c42;
+        }
+
+        .btn-auth {
+            width: 100%;
+        }
+
+        /* DIVIDER */
+        .auth-divider {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            margin: 1rem 0;
+            color: var(--secondary);
+        }
+
+        .auth-divider::before,
+        .auth-divider::after {
+            content: '';
+            flex: 1;
+            height: 1px;
+            background: rgba(255, 255, 255, 0.2);
+        }
+
+        /* SOCIAL AUTH */
+        .social-auth {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1rem;
+        }
+
+        .btn-social {
+            background: rgba(255, 255, 255, 0.1);
+            color: var(--primary);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+        .btn-social:hover {
+            background: rgba(255, 255, 255, 0.15);
+            transform: translateY(-2px);
+        }
+
+        .google-auth {
+            border-color: rgba(219, 68, 55, 0.3);
+        }
+
+        .facebook-auth {
+            border-color: rgba(59, 89, 152, 0.3);
+        }
+
+        /* FOOTER AUTH */
+        .auth-footer {
+            text-align: center;
+            margin-top: 1.5rem;
+        }
+
+        .auth-footer p {
+            color: var(--secondary);
+        }
+
+        .auth-link {
+            color: var(--accent);
+            text-decoration: none;
+            transition: color var(--transition-base);
+        }
+
+        .auth-link:hover {
+            color: #ff8c42;
+        }
+
+        /* INFORMACIÓN AUTH */
+        .auth-info {
+            padding: 2rem;
+        }
+
+        .auth-info-content {
+            max-width: 500px;
+            margin: 0 auto;
+        }
+
+        .auth-icon {
+            width: 100px;
+            height: 100px;
+            margin: 0 auto 2rem;
+            background: linear-gradient(135deg, var(--accent), #ff8c42);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 3rem;
+            color: white;
+        }
+
+        .auth-info h2 {
+            font-size: 2.5rem;
+            font-weight: 300;
+            margin-bottom: 1rem;
+            text-align: center;
+            color: var(--primary);
+        }
+
+        .auth-info p {
+            color: var(--secondary);
+            text-align: center;
+            margin-bottom: 3rem;
+            line-height: 1.6;
+            font-size: 1.1rem;
+        }
+
+        .features-list {
+            display: flex;
+            flex-direction: column;
+            gap: 2rem;
+            margin-bottom: 3rem;
+        }
+
+        .feature-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 1rem;
+        }
+
+        .feature-item i {
+            width: 50px;
+            height: 50px;
+            background: rgba(255, 102, 0, 0.1);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            color: var(--accent);
+            flex-shrink: 0;
+        }
+
+        .feature-item h4 {
+            color: var(--primary);
+            margin-bottom: 0.5rem;
+            font-size: 1.1rem;
+        }
+
+        .feature-item p {
+            color: var(--secondary);
+            text-align: left;
+            margin: 0;
+            font-size: 0.9rem;
+            line-height: 1.5;
+        }
+
+        .security-info {
+            text-align: center;
+            padding: 2rem;
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 12px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .security-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            color: var(--accent);
+            margin-bottom: 0.5rem;
+            font-weight: 600;
+        }
+
+        .security-info p {
+            color: var(--secondary);
+            margin: 0;
+            font-size: 0.9rem;
+        }
+
+        /* MODALES */
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.8);
+            backdrop-filter: blur(10px);
+            z-index: 2000;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .modal.active {
+            display: flex;
+        }
+
+        .modal-content {
+            background: var(--bg-dark);
+            border-radius: 20px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            max-width: 500px;
+            width: 90%;
+            max-height: 90vh;
+            overflow-y: auto;
+            position: relative;
+        }
+
+        .auth-modal {
+            padding: 2rem;
+        }
+
+        .modal-close {
+            position: absolute;
+            top: 1rem;
+            right: 1rem;
+            background: rgba(255, 255, 255, 0.1);
+            border: none;
+            color: var(--secondary);
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: all var(--transition-base);
+        }
+
+        .modal-close:hover {
+            background: rgba(255, 255, 255, 0.2);
+        }
+
+        .modal-header {
+            text-align: center;
+            margin-bottom: 2rem;
+        }
+
+        .modal-header h2 {
+            font-size: 2rem;
+            margin-bottom: 0.5rem;
+            color: var(--primary);
+        }
+
+        .modal-header p {
+            color: var(--secondary);
+        }
+
+        .modal-footer {
+            text-align: center;
+            margin-top: 1.5rem;
+        }
+
+        /* LOADER */
+        .loader {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.8);
+            z-index: 3000;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .loader-content {
+            text-align: center;
+            color: var(--primary);
+        }
+
+        .loader-spinner {
+            width: 50px;
+            height: 50px;
+            border: 3px solid rgba(255, 255, 255, 0.3);
+            border-top: 3px solid var(--accent);
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+            margin: 0 auto 1rem;
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        /* FOOTER AUTH PAGE */
+        .auth-footer-page {
+            background: var(--bg-darker);
+            color: var(--primary);
+            padding: 2rem 0 1rem;
+            margin-top: auto;
+        }
+
+        @media (max-width: 968px) {
+            .auth-grid {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+            }
+            
+            .auth-form-container {
+                padding: 2rem;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .auth-hero {
+                padding: 100px 1rem 40px;
+            }
+            
+            .auth-header h1 {
+                font-size: 2rem;
+            }
+            
+            .auth-info h2 {
+                font-size: 2rem;
+            }
+            
+            .social-auth {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .auth-header h1 {
+                font-size: 1.8rem;
+            }
+            
+            .auth-form-container {
+                padding: 1.5rem;
+            }
+            
+            .form-options {
+                flex-direction: column;
+                gap: 1rem;
+                align-items: flex-start;
+            }
+        }
+    </style>
+</head>
+<body class="auth-page">
+    <!-- NAVBAR SIMPLIFICADA PARA LOGIN -->
+    <nav class="auth-nav">
+        <div class="logo">
+            <a href="index.html">Fredy Culqui</a>
+        </div>
+        <a href="index.html" class="back-home">
+            <i class="fas fa-arrow-left"></i>
+            Volver al Inicio
+        </a>
+    </nav>
+
+    <!-- HERO SECTION AUTH -->
+    <section class="auth-hero">
+        <div class="auth-container">
+            <div class="auth-grid">
+                <!-- FORMULARIO DE LOGIN -->
+                <div class="auth-form-container">
+                    <div class="auth-header">
+                        <h1>Iniciar Sesión</h1>
+                        <p>Accede a tu cuenta para gestionar tus sesiones y proyectos</p>
+                    </div>
+
+                    <form id="loginForm" class="auth-form">
+                        <div class="form-group">
+                            <label for="loginEmail">Correo Electrónico</label>
+                            <div class="input-with-icon">
+                                <i class="fas fa-envelope"></i>
+                                <input type="email" id="loginEmail" name="email" required placeholder="tu@email.com">
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="loginPassword">Contraseña</label>
+                            <div class="input-with-icon">
+                                <i class="fas fa-lock"></i>
+                                <input type="password" id="loginPassword" name="password" required placeholder="Tu contraseña">
+                                <button type="button" class="toggle-password" id="togglePassword">
+                                    <i class="fas fa-eye"></i>
+                                </button>
+                            </div>
+                        </div>
+
+                        <div class="form-options">
+                            <div class="remember-me">
+                                <input type="checkbox" id="rememberMe" name="remember">
+                                <label for="rememberMe">Recordar sesión</label>
+                            </div>
+                            <a href="#forgot-password" class="forgot-password" id="forgotPasswordLink">¿Olvidaste tu contraseña?</a>
+                        </div>
+
+                        <button type="submit" class="btn btn-primary btn-large btn-auth">
+                            <i class="fas fa-sign-in-alt"></i>
+                            Iniciar Sesión
+                        </button>
+
+                        <div class="auth-divider">
+                            <span>o continuar con</span>
+                        </div>
+
+                        <div class="social-auth">
+                            <button type="button" class="btn btn-social google-auth">
+                                <i class="fab fa-google"></i>
+                                Google
+                            </button>
+                            <button type="button" class="btn btn-social facebook-auth">
+                                <i class="fab fa-facebook"></i>
+                                Facebook
+                            </button>
+                        </div>
+
+                        <div class="auth-footer">
+                            <p>¿No tienes una cuenta? <a href="#register" class="auth-link" id="registerLink">Regístrate aquí</a></p>
+                        </div>
+                    </form>
+                </div>
+
+                <!-- INFORMACIÓN DEL SISTEMA -->
+                <div class="auth-info">
+                    <div class="auth-info-content">
+                        <div class="auth-icon">
+                            <i class="fas fa-camera"></i>
+                        </div>
+                        <h2>Sistema de Gestión</h2>
+                        <p>Accede a herramientas exclusivas para clientes y colaboradores</p>
+                        
+                        <div class="features-list">
+                            <div class="feature-item">
+                                <i class="fas fa-calendar-check"></i>
+                                <div>
+                                    <h4>Gestiona tus Sesiones</h4>
+                                    <p>Revisa y modifica tus reservas programadas</p>
+                                </div>
+                            </div>
+                            <div class="feature-item">
+                                <i class="fas fa-images"></i>
+                                <div>
+                                    <h4>Acceso a Galerías</h4>
+                                    <p>Visualiza y descarga tus fotos editadas</p>
+                                </div>
+                            </div>
+                            <div class="feature-item">
+                                <i class="fas fa-comments"></i>
+                                <div>
+                                    <h4>Comunicación Directa</h4>
+                                    <p>Contacta directamente para consultas</p>
+                                </div>
+                            </div>
+                            <div class="feature-item">
+                                <i class="fas fa-file-invoice"></i>
+                                <div>
+                                    <h4>Documentos y Facturas</h4>
+                                    <p>Accede a tus presupuestos y facturas</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="security-info">
+                            <div class="security-badge">
+                                <i class="fas fa-shield-alt"></i>
+                                <span>Sistema Seguro</span>
+                            </div>
+                            <p>Tus datos están protegidos con encriptación SSL</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- MODAL RECUPERACIÓN DE CONTRASEÑA -->
+    <div class="modal" id="forgotPasswordModal">
+        <div class="modal-content auth-modal">
+            <button class="modal-close" id="closeForgotPassword">
+                <i class="fas fa-times"></i>
+            </button>
+            <div class="modal-header">
+                <h2>Recuperar Contraseña</h2>
+                <p>Ingresa tu email y te enviaremos un enlace para restablecer tu contraseña</p>
+            </div>
+            <form id="forgotPasswordForm" class="auth-form">
+                <div class="form-group">
+                    <label for="recoveryEmail">Correo Electrónico</label>
+                    <div class="input-with-icon">
+                        <i class="fas fa-envelope"></i>
+                        <input type="email" id="recoveryEmail" name="email" required placeholder="tu@email.com">
+                    </div>
+                </div>
+                <button type="submit" class="btn btn-primary btn-large">
+                    <i class="fas fa-paper-plane"></i>
+                    Enviar Enlace de Recuperación
+                </button>
+            </form>
+            <div class="modal-footer">
+                <p>¿Recordaste tu contraseña? <a href="#login" class="auth-link">Iniciar Sesión</a></p>
+            </div>
+        </div>
+    </div>
+
+    <!-- MODAL REGISTRO -->
+    <div class="modal" id="registerModal">
+        <div class="modal-content auth-modal">
+            <button class="modal-close" id="closeRegister">
+                <i class="fas fa-times"></i>
+            </button>
+            <div class="modal-header">
+                <h2>Crear Cuenta</h2>
+                <p>Regístrate para acceder a todas las funcionalidades</p>
+            </div>
+            <form id="registerForm" class="auth-form">
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="registerFirstName">Nombre</label>
+                        <input type="text" id="registerFirstName" name="firstName" required placeholder="Tu nombre">
+                    </div>
+                    <div class="form-group">
+                        <label for="registerLastName">Apellido</label>
+                        <input type="text" id="registerLastName" name="lastName" required placeholder="Tu apellido">
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="registerEmail">Correo Electrónico</label>
+                    <div class="input-with-icon">
+                        <i class="fas fa-envelope"></i>
+                        <input type="email" id="registerEmail" name="email" required placeholder="tu@email.com">
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="registerPhone">Teléfono</label>
+                    <div class="input-with-icon">
+                        <i class="fas fa-phone"></i>
+                        <input type="tel" id="registerPhone" name="phone" placeholder="+51 XXX XXX XXX">
+                    </div>
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="registerPassword">Contraseña</label>
+                        <div class="input-with-icon">
+                            <i class="fas fa-lock"></i>
+                            <input type="password" id="registerPassword" name="password" required placeholder="Crea una contraseña">
+                            <button type="button" class="toggle-password">
+                                <i class="fas fa-eye"></i>
+                            </button>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="registerConfirmPassword">Confirmar Contraseña</label>
+                        <div class="input-with-icon">
+                            <i class="fas fa-lock"></i>
+                            <input type="password" id="registerConfirmPassword" name="confirmPassword" required placeholder="Repite tu contraseña">
+                            <button type="button" class="toggle-password">
+                                <i class="fas fa-eye"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="registerUserType">Tipo de Usuario</label>
+                    <select id="registerUserType" name="userType" required>
+                        <option value="">Selecciona tu tipo</option>
+                        <option value="client">Cliente</option>
+                        <option value="collaborator">Colaborador</option>
+                        <option value="model">Modelo</option>
+                    </select>
+                </div>
+
+                <div class="form-group checkbox-group">
+                    <input type="checkbox" id="registerTerms" name="terms" required>
+                    <label for="registerTerms">Acepto los <a href="#terms" class="auth-link">términos y condiciones</a> y la <a href="#privacy" class="auth-link">política de privacidad</a></label>
+                </div>
+
+                <div class="form-group checkbox-group">
+                    <input type="checkbox" id="registerNewsletter" name="newsletter">
+                    <label for="registerNewsletter">Deseo recibir novedades y promociones</label>
+                </div>
+
+                <button type="submit" class="btn btn-primary btn-large">
+                    <i class="fas fa-user-plus"></i>
+                    Crear Cuenta
+                </button>
+            </form>
+            <div class="modal-footer">
+                <p>¿Ya tienes una cuenta? <a href="#login" class="auth-link">Iniciar Sesión</a></p>
+            </div>
+        </div>
+    </div>
+
+    <!-- LOADER GLOBAL -->
+    <div id="globalLoader" class="loader">
+        <div class="loader-content">
+            <div class="loader-spinner"></div>
+            <p>Iniciando sesión...</p>
+        </div>
+    </div>
+
+    <!-- FOOTER SIMPLIFICADO -->
+    <footer class="auth-footer-page">
+        <div class="footer-content">
+            <div class="footer-section">
+                <h3>Fredy Culqui</h3>
+                <p>Fotógrafo & Filmmaker profesional</p>
+                <div class="social-links">
+                    <a href="https://www.instagram.com/fredy_culqui" target="_blank">
+                        <i class="fab fa-instagram"></i>
+                    </a>
+                    <a href="https://www.tiktok.com/@fredy_culqui" target="_blank">
+                        <i class="fab fa-tiktok"></i>
+                    </a>
+                    <a href="mailto:fredyculqui@gmail.com">
+                        <i class="fas fa-envelope"></i>
+                    </a>
+                </div>
+            </div>
+            <div class="footer-section">
+                <h4>Enlaces</h4>
+                <ul>
+                    <li><a href="index.html">Inicio</a></li>
+                    <li><a href="portafolio.html">Portafolio</a></li>
+                    <li><a href="agendar.html">Agendar</a></li>
+                    <li><a href="contacto.html">Contacto</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h4>Legal</h4>
+                <ul>
+                    <li><a href="privacy.html">Privacidad</a></li>
+                    <li><a href="terms.html">Términos</a></li>
+                    <li><a href="cookies.html">Cookies</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2025 Fredy Culqui. Todos los derechos reservados.</p>
+        </div>
+    </footer>
+
+    <script src="js/main.js"></script>
+    <script>
+        // Funcionalidad básica para login
+        document.addEventListener('DOMContentLoaded', function() {
+            // Toggle password visibility
+            const togglePassword = document.getElementById('togglePassword');
+            const passwordInput = document.getElementById('loginPassword');
+            
+            if (togglePassword && passwordInput) {
+                togglePassword.addEventListener('click', function() {
+                    const type = passwordInput.getAttribute('type') === 'password' ? 'text' : 'password';
+                    passwordInput.setAttribute('type', type);
+                    this.innerHTML = type === 'password' ? '<i class="fas fa-eye"></i>' : '<i class="fas fa-eye-slash"></i>';
+                });
+            }
+
+            // Modal functionality
+            const forgotPasswordLink = document.getElementById('forgotPasswordLink');
+            const registerLink = document.getElementById('registerLink');
+            const forgotPasswordModal = document.getElementById('forgotPasswordModal');
+            const registerModal = document.getElementById('registerModal');
+            const closeForgotPassword = document.getElementById('closeForgotPassword');
+            const closeRegister = document.getElementById('closeRegister');
+
+            // Open modals
+            if (forgotPasswordLink && forgotPasswordModal) {
+                forgotPasswordLink.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    forgotPasswordModal.classList.add('active');
+                });
+            }
+
+            if (registerLink && registerModal) {
+                registerLink.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    registerModal.classList.add('active');
+                });
+            }
+
+            // Close modals
+            if (closeForgotPassword && forgotPasswordModal) {
+                closeForgotPassword.addEventListener('click', function() {
+                    forgotPasswordModal.classList.remove('active');
+                });
+            }
+
+            if (closeRegister && registerModal) {
+                closeRegister.addEventListener('click', function() {
+                    registerModal.classList.remove('active');
+                });
+            }
+
+            // Close modals when clicking outside
+            window.addEventListener('click', function(e) {
+                if (e.target === forgotPasswordModal) {
+                    forgotPasswordModal.classList.remove('active');
+                }
+                if (e.target === registerModal) {
+                    registerModal.classList.remove('active');
+                }
+            });
+
+            // Form submissions
+            const loginForm = document.getElementById('loginForm');
+            if (loginForm) {
+                loginForm.addEventListener('submit', function(e) {
+                    e.preventDefault();
+                    const loader = document.getElementById('globalLoader');
+                    if (loader) loader.style.display = 'flex';
+                    
+                    // Simulate login process
+                    setTimeout(() => {
+                        if (loader) loader.style.display = 'none';
+                        alert('Inicio de sesión simulado correctamente');
+                    }, 2000);
+                });
+            }
+        });
+    </script>
+</body>
+</html>

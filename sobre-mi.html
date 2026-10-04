@@ -1,0 +1,702 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sobre Mí - Fredy Culqui</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/navbar.css">
+    <link rel="stylesheet" href="css/responsive.css">
+    <style>
+        /* ===== ESTILOS ESPECÍFICOS SOBRE MÍ ===== */
+        
+        /* HERO SECTION */
+        .about-hero {
+            padding: 120px 1rem 60px;
+            background: linear-gradient(135deg, rgba(10, 10, 10, 0.98), rgba(20, 20, 20, 0.95));
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .about-hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: radial-gradient(circle at 30% 50%, rgba(255, 102, 0, 0.1) 0%, transparent 50%);
+            z-index: 1;
+        }
+
+        .about-hero .hero-content {
+            position: relative;
+            z-index: 2;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .about-hero h1 {
+            font-size: 3.5rem;
+            font-weight: 300;
+            margin-bottom: 1rem;
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .about-hero .subtitle {
+            font-size: 1.2rem;
+            color: var(--secondary);
+            font-weight: 300;
+            line-height: 1.6;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        /* CONTENIDO PRINCIPAL */
+        .about-content {
+            padding: 80px 0;
+            background: var(--bg-dark);
+        }
+
+        .about-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            align-items: center;
+        }
+
+        .about-story p {
+            font-size: 1.1rem;
+            line-height: 1.8;
+            color: var(--secondary);
+            margin-bottom: 1.5rem;
+        }
+
+        /* STATS GRID */
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 2rem;
+            margin: 3rem 0;
+        }
+
+        .stat-item {
+            text-align: center;
+            padding: 2rem;
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 12px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(20px);
+            transition: all var(--transition-base);
+        }
+
+        .stat-item:hover {
+            transform: translateY(-5px);
+            background: rgba(255, 255, 255, 0.08);
+            border-color: rgba(255, 102, 0, 0.3);
+        }
+
+        .stat-number {
+            font-size: 3rem;
+            font-weight: 700;
+            color: var(--accent);
+            margin-bottom: 0.5rem;
+        }
+
+        .stat-label {
+            font-size: 0.9rem;
+            color: var(--secondary);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        /* IMAGEN */
+        .about-image {
+            position: relative;
+        }
+
+        .image-container {
+            position: relative;
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
+        }
+
+        .image-container img {
+            width: 100%;
+            height: auto;
+            display: block;
+            transition: transform var(--transition-slow);
+        }
+
+        .image-container:hover img {
+            transform: scale(1.05);
+        }
+
+        .image-overlay {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: linear-gradient(transparent, rgba(0, 0, 0, 0.9));
+            padding: 2rem;
+            transform: translateY(100%);
+            transition: transform var(--transition-base);
+        }
+
+        .image-container:hover .image-overlay {
+            transform: translateY(0);
+        }
+
+        .overlay-content h4 {
+            color: var(--primary);
+            font-size: 1.5rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .overlay-content p {
+            color: var(--secondary);
+            font-size: 1rem;
+        }
+
+        /* EXPERIENCIA SECTION */
+        .experience-section {
+            padding: 80px 0;
+            background: rgba(15, 15, 15, 0.8);
+        }
+
+        .experience-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+
+        .experience-item {
+            padding: 2.5rem;
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 16px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(20px);
+            transition: all var(--transition-base);
+            text-align: center;
+        }
+
+        .experience-item:hover {
+            transform: translateY(-10px);
+            background: rgba(255, 255, 255, 0.08);
+            border-color: rgba(255, 102, 0, 0.3);
+        }
+
+        .exp-icon {
+            width: 80px;
+            height: 80px;
+            margin: 0 auto 1.5rem;
+            background: linear-gradient(135deg, var(--accent), #ff8c42);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2rem;
+            color: white;
+        }
+
+        .experience-item h3 {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+            color: var(--primary);
+        }
+
+        .experience-item p {
+            color: var(--secondary);
+            margin-bottom: 1.5rem;
+            line-height: 1.6;
+        }
+
+        .exp-skills {
+            list-style: none;
+            padding: 0;
+        }
+
+        .exp-skills li {
+            color: var(--secondary);
+            padding: 0.5rem 0;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .exp-skills li:last-child {
+            border-bottom: none;
+        }
+
+        /* EQUIPMENT SECTION */
+        .equipment-section {
+            padding: 80px 0;
+            background: var(--bg-dark);
+        }
+
+        .equipment-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
+        }
+
+        .equipment-item {
+            padding: 2rem;
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 12px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            text-align: center;
+            transition: all var(--transition-base);
+        }
+
+        .equipment-item:hover {
+            transform: translateY(-5px);
+            background: rgba(255, 255, 255, 0.08);
+        }
+
+        .equipment-icon {
+            width: 60px;
+            height: 60px;
+            margin: 0 auto 1rem;
+            background: rgba(255, 102, 0, 0.1);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            color: var(--accent);
+        }
+
+        .equipment-item h3 {
+            font-size: 1.3rem;
+            margin-bottom: 1rem;
+            color: var(--primary);
+        }
+
+        .equipment-item p {
+            color: var(--secondary);
+            margin-bottom: 1.5rem;
+            line-height: 1.6;
+        }
+
+        .equipment-list {
+            list-style: none;
+            padding: 0;
+        }
+
+        .equipment-list li {
+            color: var(--secondary);
+            padding: 0.3rem 0;
+        }
+
+        /* PROCESS SECTION */
+        .process-section {
+            padding: 80px 0;
+            background: rgba(15, 15, 15, 0.8);
+        }
+
+        .process-timeline {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .process-step {
+            display: flex;
+            align-items: flex-start;
+            gap: 2rem;
+            margin-bottom: 3rem;
+            padding: 2rem;
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 16px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            transition: all var(--transition-base);
+        }
+
+        .process-step:hover {
+            transform: translateX(10px);
+            background: rgba(255, 255, 255, 0.08);
+        }
+
+        .step-number {
+            width: 60px;
+            height: 60px;
+            background: linear-gradient(135deg, var(--accent), #ff8c42);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: white;
+            flex-shrink: 0;
+        }
+
+        .step-content h3 {
+            font-size: 1.5rem;
+            margin-bottom: 0.5rem;
+            color: var(--primary);
+        }
+
+        .step-content p {
+            color: var(--secondary);
+            line-height: 1.6;
+        }
+    </style>
+</head>
+<body>
+    <!-- NAVBAR -->
+    <nav>
+        <div class="logo">
+        <a href="index.html" style="color: inherit; text-decoration: none;">Fredy Culqui</a>
+    </div>
+    <i class="fas fa-bars menu-toggle"></i>
+        <ul>
+            <li><a href="index.html">Inicio</a></li>
+            <li><a href="sobre-mi.html" class="active">Sobre Mí</a></li>
+            <li><a href="portafolio.html">Portafolio</a></li>
+            <li><a href="paquetes.html">Paquetes</a></li>
+            <li><a href="agendar.html">Agendar</a></li>
+            <li><a href="contacto.html">Contacto</a></li>
+            <li><a href="login.html" class="btn-login">Iniciar Sesión</a></li>
+        </ul>
+    </nav>
+
+    <!-- HERO SECTION -->
+    <section class="about-hero">
+        <div class="hero-content">
+            <h1>Sobre Mí</h1>
+            <p class="subtitle">Fotógrafo y filmmaker apasionado por contar historias a través de la imagen</p>
+        </div>
+    </section>
+
+    <!-- CONTENIDO PRINCIPAL -->
+    <section class="about-content">
+        <div class="container">
+            <div class="about-grid">
+                <div class="about-text">
+                    <div class="section-header">
+                        <h2>Mi Pasión por la Imagen</h2>
+                        <p>Desde niño, siempre me fascinó el poder de una imagen para congelar un momento, transmitir una emoción o contar una historia completa en un solo fotograma.</p>
+                    </div>
+
+                    <div class="about-story">
+                        <p>Mi enfoque combina la técnica fotográfica clásica con el lenguaje cinematográfico moderno, creando obras que no solo se ven, sino que se sienten. Cada sesión es una oportunidad para crear algo único y memorable.</p>
+                        
+                        <p>Especializado en retratos emocionales y paisajes urbanos, busco siempre la autenticidad en cada toma, ya sea en las calles de Cajamarca o en un estudio profesional. Creo que la mejor fotografía es aquella que captura la esencia real del momento.</p>
+                    </div>
+
+                    <div class="stats-grid">
+                        <div class="stat-item">
+                            <div class="stat-number" data-count="5">0</div>
+                            <div class="stat-label">Años de Experiencia</div>
+                        </div>
+                        <div class="stat-item">
+                            <div class="stat-number" data-count="200">0</div>
+                            <div class="stat-label">Sesiones Realizadas</div>
+                        </div>
+                        <div class="stat-item">
+                            <div class="stat-number" data-count="15">0</div>
+                            <div class="stat-label">Proyectos Audiovisuales</div>
+                        </div>
+                        <div class="stat-item">
+                            <div class="stat-number" data-count="50">0</div>
+                            <div class="stat-label">Clientes Satisfechos</div>
+                        </div>
+                    </div>
+
+                    <div class="btn-container">
+                        <a href="portafolio.html" class="btn btn-primary">
+                            <i class="fas fa-images"></i>
+                            Ver Mi Trabajo
+                        </a>
+                        <a href="contacto.html" class="btn btn-outline">
+                            <i class="fas fa-handshake"></i>
+                            Trabajemos Juntos
+                        </a>
+                    </div>
+                </div>
+
+                <div class="about-image">
+                    <div class="image-container">
+                        <img src="imagenes/sobre-mi/IMG_0830.JPG" alt="Fredy Culqui - Fotógrafo">
+                        <div class="image-overlay">
+                            <div class="overlay-content">
+                                <h4>Fredy Culqui</h4>
+                                <p>Fotógrafo & Filmmaker</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- EXPERIENCIA Y ESPECIALIDADES -->
+    <section class="experience-section">
+        <div class="container">
+            <div class="section-header">
+                <h2>Mi Experiencia</h2>
+                <p>Más de 5 años especializándome en diferentes áreas de la fotografía y producción audiovisual</p>
+            </div>
+
+            <div class="experience-grid">
+                <div class="experience-item">
+                    <div class="exp-icon">
+                        <i class="fas fa-camera"></i>
+                    </div>
+                    <h3>Fotografía de Retrato</h3>
+                    <p>Especializado en retratos que capturan la personalidad y emociones únicas de cada individuo.</p>
+                    <ul class="exp-skills">
+                        <li>Retratos artísticos</li>
+                        <li>Sesiones de pareja</li>
+                        <li>Fotografía conceptual</li>
+                    </ul>
+                </div>
+
+                <div class="experience-item">
+                    <div class="exp-icon">
+                        <i class="fas fa-heart"></i>
+                    </div>
+                    <h3>Eventos Especiales</h3>
+                    <p>Capturando los momentos más importantes de la vida con sensibilidad y atención al detalle.</p>
+                    <ul class="exp-skills">
+                        <li>Bodas</li>
+                        <li>15 Años</li>
+                        <li>Eventos familiares</li>
+                    </ul>
+                </div>
+
+                <div class="experience-item">
+                    <div class="exp-icon">
+                        <i class="fas fa-video"></i>
+                    </div>
+                    <h3>Producción Audiovisual</h3>
+                    <p>Creación de contenido cinematográfico para diferentes plataformas y propósitos.</p>
+                    <ul class="exp-skills">
+                        <li>Videoclips musicales</li>
+                        <li>Documentales</li>
+                        <li>Contenido comercial</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- EQUIPAMIENTO PROFESIONAL -->
+    <section class="equipment-section">
+        <div class="container">
+            <div class="section-header">
+                <h2>Equipamiento Profesional</h2>
+                <p>Trabajo con tecnología de última generación para garantizar la máxima calidad en cada proyecto</p>
+            </div>
+
+            <div class="equipment-grid">
+                <div class="equipment-item">
+                    <div class="equipment-icon">
+                        <i class="fas fa-camera"></i>
+                    </div>
+                    <h3>Cámaras Profesionales</h3>
+                    <p>Equipos DSLR y mirrorless de alta resolución para fotografía y video 4K.</p>
+                    <ul class="equipment-list">
+                        <li>Sony A7III</li>
+                        <li>Canon EOS R</li>
+                        <li>Lentes profesionales</li>
+                    </ul>
+                </div>
+
+                <div class="equipment-item">
+                    <div class="equipment-icon">
+                        <i class="fas fa-film"></i>
+                    </div>
+                    <h3>Video 4K</h3>
+                    <p>Grabación en alta definición con capacidad para slow motion y time-lapse.</p>
+                    <ul class="equipment-list">
+                        <li>Video 4K 60fps</li>
+                        <li>Slow Motion 120fps</li>
+                        <li>Estabilización profesional</li>
+                    </ul>
+                </div>
+
+                <div class="equipment-item">
+                    <div class="equipment-icon">
+                        <i class="fas fa-lightbulb"></i>
+                    </div>
+                    <h3>Iluminación</h3>
+                    <p>Equipos de iluminación profesional para estudio y locaciones externas.</p>
+                    <ul class="equipment-list">
+                        <li>Softboxes profesionales</li>
+                        <li>LED de alta potencia</li>
+                        <li>Modificadores de luz</li>
+                    </ul>
+                </div>
+
+                <div class="equipment-item">
+                    <div class="equipment-icon">
+                        <i class="fas fa-laptop"></i>
+                    </div>
+                    <h3>Edición Profesional</h3>
+                    <p>Software especializado para postproducción y edición de máxima calidad.</p>
+                    <ul class="equipment-list">
+                        <li>Adobe Creative Suite</li>
+                        <li>DaVinci Resolve</li>
+                        <li>Estación de trabajo optimizada</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- PROCESO DE TRABAJO -->
+    <section class="process-section">
+        <div class="container">
+            <div class="section-header">
+                <h2>Mi Proceso de Trabajo</h2>
+                <p>Un enfoque estructurado que garantiza resultados excepcionales en cada proyecto</p>
+            </div>
+
+            <div class="process-timeline">
+                <div class="process-step">
+                    <div class="step-number">01</div>
+                    <div class="step-content">
+                        <h3>Consulta Inicial</h3>
+                        <p>Analizamos tus necesidades, ideas y expectativas para el proyecto.</p>
+                    </div>
+                </div>
+
+                <div class="process-step">
+                    <div class="step-number">02</div>
+                    <div class="step-content">
+                        <h3>Planificación</h3>
+                        <p>Desarrollo del concepto, ubicaciones, horarios y todos los detalles.</p>
+                    </div>
+                </div>
+
+                <div class="process-step">
+                    <div class="step-number">03</div>
+                    <div class="step-content">
+                        <h3>Sesión</h3>
+                        <p>Ejecución profesional con dirección creativa y ambiente relajado.</p>
+                    </div>
+                </div>
+
+                <div class="process-step">
+                    <div class="step-number">04</div>
+                    <div class="step-content">
+                        <h3>Edición</h3>
+                        <p>Selección y edición profesional de las mejores tomas.</p>
+                    </div>
+                </div>
+
+                <div class="process-step">
+                    <div class="step-number">05</div>
+                    <div class="step-content">
+                        <h3>Entrega</h3>
+                        <p>Entrega de fotos/videos editados en alta calidad y formato digital.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer id="contacto">
+        <div class="footer-content">
+            <div class="footer-section">
+                <h3>Fredy Culqui</h3>
+                <p>Fotógrafo & Filmmaker profesional especializado en contar historias a través de la imagen.</p>
+                <div class="social-links">
+                    <a href="https://www.instagram.com/fredy_culqui" target="_blank">
+                        <i class="fab fa-instagram"></i>
+                    </a>
+                    <a href="https://www.tiktok.com/@fredy_culqui" target="_blank">
+                        <i class="fab fa-tiktok"></i>
+                    </a>
+                    <a href="mailto:fredyculqui@gmail.com">
+                        <i class="fas fa-envelope"></i>
+                    </a>
+                    <a href="https://wa.me/51967620685" target="_blank">
+                        <i class="fab fa-whatsapp"></i>
+                    </a>
+                </div>
+            </div>
+            
+            <div class="footer-section">
+                <h4>Enlaces Rápidos</h4>
+                <ul>
+                    <li><a href="index.html">Inicio</a></li>
+                    <li><a href="sobre-mi.html">Sobre Mí</a></li>
+                    <li><a href="portafolio.html">Portafolio</a></li>
+                    <li><a href="agendar.html">Agendar Sesión</a></li>
+                    <li><a href="contacto.html">Contacto</a></li>
+                </ul>
+            </div>
+            
+            <div class="footer-section">
+                <h4>Servicios</h4>
+                <ul>
+                    <li><a href="portafolio.html?filter=retratos">Retratos</a></li>
+                    <li><a href="portafolio.html?filter=bodas">Bodas</a></li>
+                    <li><a href="portafolio.html?filter=15-anos">15 Años</a></li>
+                    <li><a href="portafolio.html?filter=audiovisual">Audiovisual</a></li>
+                </ul>
+            </div>
+            
+            <div class="footer-section">
+                <h4>Contacto</h4>
+                <div class="contact-info">
+                    <p><i class="fas fa-envelope"></i> fredyculqui@gmail.com</p>
+                    <p><i class="fas fa-phone"></i> +51 967 620 685</p>
+                    <p><i class="fas fa-map-marker-alt"></i> Cajamarca, Perú</p>
+                </div>
+            </div>
+        </div>
+        
+        <div class="footer-bottom">
+            <p>&copy; 2025 Fredy Culqui. Todos los derechos reservados.</p>
+        </div>
+    </footer>
+
+    <script src="js/main.js"></script>
+    <script>
+        // Animación de números contadores
+        document.addEventListener('DOMContentLoaded', function() {
+            const statNumbers = document.querySelectorAll('.stat-number');
+            
+            function animateNumbers() {
+                statNumbers.forEach(stat => {
+                    const target = parseInt(stat.getAttribute('data-count'));
+                    const duration = 2000;
+                    const step = target / (duration / 16);
+                    let current = 0;
+                    
+                    const timer = setInterval(() => {
+                        current += step;
+                        if (current >= target) {
+                            current = target;
+                            clearInterval(timer);
+                        }
+                        stat.textContent = Math.floor(current) + (stat.getAttribute('data-count') > '100' ? '+' : '');
+                    }, 16);
+                });
+            }
+            
+            // Trigger animation when element is in viewport
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        animateNumbers();
+                        observer.unobserve(entry.target);
+                    }
+                });
+            });
+            
+            observer.observe(document.querySelector('.stats-grid'));
+        });
+    </script>
+</body>
+</html>

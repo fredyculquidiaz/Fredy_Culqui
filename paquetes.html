@@ -1,0 +1,780 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Paquetes - Fredy Culqui</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/navbar.css">
+    <link rel="stylesheet" href="css/responsive.css">
+    <style>
+        /* ESTILOS PÁGINA PAQUETES */
+        :root {
+            --primary: #ffffff;
+            --secondary: #b0b0b0;
+            --accent: #ff6600;
+            --bg-dark: #0a0a0a;
+            --bg-darker: #050505;
+            --transition-base: 0.3s ease;
+        }
+
+        .packages-hero {
+            padding: 140px 1rem 80px;
+            background: linear-gradient(135deg, rgba(10, 10, 10, 0.98), rgba(20, 20, 20, 0.95));
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .packages-hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: radial-gradient(circle at 30% 50%, rgba(255, 102, 0, 0.1) 0%, transparent 50%);
+            z-index: 1;
+        }
+
+        .packages-hero .container {
+            position: relative;
+            z-index: 2;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .packages-hero h1 {
+            font-size: 3.5rem;
+            font-weight: 300;
+            margin-bottom: 1rem;
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .packages-hero .subtitle {
+            font-size: 1.2rem;
+            color: var(--secondary);
+            font-weight: 300;
+            line-height: 1.6;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .packages-content {
+            padding: 80px 0;
+            background: var(--bg-dark);
+        }
+
+        .packages-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 1.5rem;
+        }
+
+        .package-card {
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 20px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            padding: 2.5rem;
+            backdrop-filter: blur(20px);
+            transition: all var(--transition-base);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .package-card:hover {
+            transform: translateY(-10px);
+            border-color: rgba(255, 102, 0, 0.3);
+            background: rgba(255, 255, 255, 0.08);
+        }
+
+        .package-badge {
+            position: absolute;
+            top: 1rem;
+            right: 1rem;
+            background: linear-gradient(135deg, var(--accent), #ff8c42);
+            color: white;
+            padding: 0.5rem 1rem;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: 600;
+        }
+
+        .package-popular {
+            background: linear-gradient(135deg, #4CAF50, #45a049);
+        }
+
+        .package-premium {
+            background: linear-gradient(135deg, #9C27B0, #8E24AA);
+        }
+
+        .package-header {
+            text-align: center;
+            margin-bottom: 2rem;
+            padding-bottom: 2rem;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .package-title {
+            font-size: 1.8rem;
+            font-weight: 300;
+            margin-bottom: 0.5rem;
+            color: var(--primary);
+        }
+
+        .package-description {
+            color: var(--secondary);
+            font-size: 1rem;
+            line-height: 1.5;
+        }
+
+        .package-price {
+            text-align: center;
+            margin-bottom: 2rem;
+        }
+
+        .price-main {
+            font-size: 3rem;
+            font-weight: 700;
+            color: var(--accent);
+            margin-bottom: 0.5rem;
+        }
+
+        .price-period {
+            color: var(--secondary);
+            font-size: 1rem;
+        }
+
+        .price-discount {
+            background: rgba(76, 175, 80, 0.2);
+            color: #4CAF50;
+            padding: 0.5rem 1rem;
+            border-radius: 10px;
+            font-size: 0.9rem;
+            font-weight: 600;
+            margin-top: 0.5rem;
+            display: inline-block;
+        }
+
+        .package-features {
+            margin-bottom: 2rem;
+        }
+
+        .feature-list {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        .feature-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 0.75rem;
+            margin-bottom: 1rem;
+            color: var(--secondary);
+        }
+
+        .feature-item i {
+            color: var(--accent);
+            margin-top: 0.2rem;
+            flex-shrink: 0;
+        }
+
+        .feature-benefits {
+            background: rgba(255, 102, 0, 0.1);
+            border-radius: 12px;
+            padding: 1.5rem;
+            margin: 1.5rem 0;
+        }
+
+        .benefits-title {
+            color: var(--accent);
+            font-weight: 600;
+            margin-bottom: 1rem;
+            font-size: 1.1rem;
+        }
+
+        .package-cta {
+            text-align: center;
+        }
+
+        .btn-package {
+            width: 100%;
+            justify-content: center;
+        }
+
+        /* Paquete destacado */
+        .package-card.featured {
+            border: 2px solid var(--accent);
+            transform: scale(1.05);
+        }
+
+        .package-card.featured::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: linear-gradient(135deg, var(--accent), #ff8c42);
+        }
+
+        .package-card.featured:hover {
+            transform: scale(1.05) translateY(-10px);
+        }
+
+        /* Sección de garantía */
+        .guarantee-section {
+            padding: 60px 0;
+            background: rgba(15, 15, 15, 0.8);
+            text-align: center;
+        }
+
+        .guarantee-content {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 0 1.5rem;
+        }
+
+        .guarantee-icon {
+            width: 80px;
+            height: 80px;
+            margin: 0 auto 2rem;
+            background: linear-gradient(135deg, var(--accent), #ff8c42);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2rem;
+            color: white;
+        }
+
+        .guarantee-title {
+            font-size: 2.5rem;
+            font-weight: 300;
+            margin-bottom: 1rem;
+            color: var(--primary);
+        }
+
+        .guarantee-text {
+            color: var(--secondary);
+            font-size: 1.1rem;
+            line-height: 1.6;
+            margin-bottom: 2rem;
+        }
+
+        /* Comparación de paquetes */
+        .comparison-section {
+            padding: 80px 0;
+            background: var(--bg-dark);
+        }
+
+        .comparison-table {
+            max-width: 1000px;
+            margin: 0 auto;
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 15px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            overflow: hidden;
+        }
+
+        .comparison-header {
+            display: grid;
+            grid-template-columns: 2fr 1fr 1fr 1fr;
+            background: rgba(255, 102, 0, 0.1);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .comparison-cell {
+            padding: 1.5rem;
+            text-align: center;
+            border-right: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .comparison-cell:last-child {
+            border-right: none;
+        }
+
+        .comparison-cell.feature {
+            text-align: left;
+            font-weight: 600;
+            color: var(--primary);
+        }
+
+        .comparison-row {
+            display: grid;
+            grid-template-columns: 2fr 1fr 1fr 1fr;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .comparison-row:last-child {
+            border-bottom: none;
+        }
+
+        .comparison-item {
+            padding: 1rem 1.5rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-right: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .comparison-item:last-child {
+            border-right: none;
+        }
+
+        .comparison-item.feature {
+            justify-content: flex-start;
+            color: var(--secondary);
+        }
+
+        .comparison-item i.fa-check {
+            color: #4CAF50;
+        }
+
+        .comparison-item i.fa-times {
+            color: #f44336;
+        }
+
+        /* Responsive */
+        @media (max-width: 968px) {
+            .package-card.featured {
+                transform: scale(1);
+            }
+            
+            .package-card.featured:hover {
+                transform: translateY(-10px);
+            }
+            
+            .packages-grid {
+                grid-template-columns: 1fr;
+                max-width: 500px;
+            }
+
+            .comparison-header,
+            .comparison-row {
+                grid-template-columns: 1fr;
+            }
+
+            .comparison-cell,
+            .comparison-item {
+                border-right: none;
+                border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+                text-align: center;
+            }
+
+            .comparison-cell.feature,
+            .comparison-item.feature {
+                text-align: center;
+                background: rgba(255, 255, 255, 0.02);
+            }
+        }
+
+        @media (max-width: 768px) {
+            .packages-hero h1 {
+                font-size: 2.5rem;
+            }
+            
+            .packages-hero .subtitle {
+                font-size: 1.1rem;
+            }
+            
+            .package-card {
+                padding: 2rem;
+            }
+            
+            .price-main {
+                font-size: 2.5rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .packages-hero {
+                padding: 120px 1rem 60px;
+            }
+            
+            .packages-hero h1 {
+                font-size: 2rem;
+            }
+            
+            .package-card {
+                padding: 1.5rem;
+            }
+            
+            .package-title {
+                font-size: 1.5rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- NAVBAR -->
+    <nav>
+        <div class="logo">
+            <a href="index.html" style="color: inherit; text-decoration: none;">Fredy Culqui</a>
+        </div>
+        <i class="fas fa-bars menu-toggle"></i>
+        <ul>
+            <li><a href="index.html">Inicio</a></li>
+            <li><a href="sobre-mi.html">Sobre Mí</a></li>
+            <li><a href="portafolio.html">Portafolio</a></li>
+            <li><a href="paquetes.html" class="active">Paquetes</a></li>
+            <li><a href="agendar.html">Agendar</a></li>
+            <li><a href="contacto.html">Contacto</a></li>
+            <li><a href="login.html" class="btn-login">Iniciar Sesión</a></li>
+        </ul>
+    </nav>
+
+    <!-- HERO SECTION -->
+    <section class="packages-hero">
+        <div class="container">
+            <h1>Paquetes Fotográficos</h1>
+            <p class="subtitle">Encuentra el plan perfecto para capturar tus momentos especiales. Servicios profesionales adaptados a tus necesidades.</p>
+        </div>
+    </section>
+
+    <!-- CONTENIDO PRINCIPAL -->
+    <section class="packages-content">
+        <div class="packages-grid">
+            <!-- PAQUETE BÁSICO -->
+            <div class="package-card">
+                <div class="package-badge">POPULAR</div>
+                <div class="package-header">
+                    <h3 class="package-title">Esencial</h3>
+                    <p class="package-description">Perfecto para sesiones individuales y momentos espontáneos</p>
+                </div>
+                
+                <div class="package-price">
+                    <div class="price-main">S/ 280</div>
+                    <div class="price-period">por sesión</div>
+                    <div class="price-discount">+ 1 hora GRATIS</div>
+                </div>
+
+                <div class="package-features">
+                    <ul class="feature-list">
+                        <li class="feature-item">
+                            <i class="fas fa-check"></i>
+                            <span>2 horas de sesión fotográfica</span>
+                        </li>
+                        <li class="feature-item">
+                            <i class="fas fa-check"></i>
+                            <span>25 fotos editadas profesionalmente</span>
+                        </li>
+                        <li class="feature-item">
+                            <i class="fas fa-check"></i>
+                            <span>1 cambio de outfit durante la sesión</span>
+                        </li>
+                        <li class="feature-item">
+                            <i class="fas fa-check"></i>
+                            <span>Sesión en estudio o locación a elegir</span>
+                        </li>
+                    </ul>
+
+                    <div class="feature-benefits">
+                        <div class="benefits-title">Incluye:</div>
+                        <ul class="feature-list">
+                            <li class="feature-item">
+                                <i class="fas fa-camera"></i>
+                                <span>Equipo profesional incluido</span>
+                            </li>
+                            <li class="feature-item">
+                                <i class="fas fa-cloud-download-alt"></i>
+                                <span>Entrega digital en alta resolución</span>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="package-cta">
+                    <a href="agendar.html?paquete=esencial" class="btn btn-primary btn-package">
+                        <i class="fas fa-calendar-check"></i>
+                        Elegir Plan
+                    </a>
+                </div>
+            </div>
+
+            <!-- PAQUETE PROFESIONAL (DESTACADO) -->
+            <div class="package-card featured">
+                <div class="package-badge package-popular">MÁS VENDIDO</div>
+                <div class="package-header">
+                    <h3 class="package-title">Profesional</h3>
+                    <p class="package-description">Ideal para eventos especiales y sesiones creativas</p>
+                </div>
+                
+                <div class="package-price">
+                    <div class="price-main">S/ 450</div>
+                    <div class="price-period">por sesión</div>
+                    <div class="price-discount">+ 2 horas GRATIS</div>
+                </div>
+
+                <div class="package-features">
+                    <ul class="feature-list">
+                        <li class="feature-item">
+                            <i class="fas fa-check"></i>
+                            <span>4 horas de sesión fotográfica</span>
+                        </li>
+                        <li class="feature-item">
+                            <i class="fas fa-check"></i>
+                            <span>50 fotos editadas profesionalmente</span>
+                        </li>
+                        <li class="feature-item">
+                            <i class="fas fa-check"></i>
+                            <span>3 cambios de outfit durante la sesión</span>
+                        </li>
+                        <li class="feature-item">
+                            <i class="fas fa-check"></i>
+                            <span>Múltiples locaciones incluidas</span>
+                        </li>
+                        <li class="feature-item">
+                            <i class="fas fa-check"></i>
+                            <span>Fotos impresas 8x10" (5 unidades)</span>
+                        </li>
+                    </ul>
+
+                    <div class="feature-benefits">
+                        <div class="benefits-title">Todo lo del plan Esencial, y además:</div>
+                        <ul class="feature-list">
+                            <li class="feature-item">
+                                <i class="fas fa-video"></i>
+                                <span>Video behind the scenes (1 min)</span>
+                            </li>
+                            <li class="feature-item">
+                                <i class="fas fa-magic"></i>
+                                <span>Retoque avanzado en 10 fotos</span>
+                            </li>
+                            <li class="feature-item">
+                                <i class="fas fa-cloud"></i>
+                                <span>Album digital personalizado</span>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="package-cta">
+                    <a href="agendar.html?paquete=profesional" class="btn btn-primary btn-package">
+                        <i class="fas fa-star"></i>
+                        Elegir Plan
+                    </a>
+                </div>
+            </div>
+
+            <!-- PAQUETE PREMIUM -->
+            <div class="package-card">
+                <div class="package-badge package-premium">PREMIUM</div>
+                <div class="package-header">
+                    <h3 class="package-title">Premium</h3>
+                    <p class="package-description">Experiencia completa para proyectos especiales y comerciales</p>
+                </div>
+                
+                <div class="package-price">
+                    <div class="price-main">S/ 750</div>
+                    <div class="price-period">por sesión</div>
+                    <div class="price-discount">+ Asesoría GRATIS</div>
+                </div>
+
+                <div class="package-features">
+                    <ul class="feature-list">
+                        <li class="feature-item">
+                            <i class="fas fa-check"></i>
+                            <span>6 horas de sesión fotográfica</span>
+                        </li>
+                        <li class="feature-item">
+                            <i class="fas fa-check"></i>
+                            <span>80 fotos editadas profesionalmente</span>
+                        </li>
+                        <li class="feature-item">
+                            <i class="fas fa-check"></i>
+                            <span>5 cambios de outfit durante la sesión</span>
+                        </li>
+                        <li class="feature-item">
+                            <i class="fas fa-check"></i>
+                            <span>Locaciones premium incluidas</span>
+                        </li>
+                        <li class="feature-item">
+                            <i class="fas fa-check"></i>
+                            <span>Asistente de fotografía incluido</span>
+                        </li>
+                    </ul>
+
+                    <div class="feature-benefits">
+                        <div class="benefits-title">Todo lo del plan Profesional, y además:</div>
+                        <ul class="feature-list">
+                            <li class="feature-item">
+                                <i class="fas fa-film"></i>
+                                <span>Video profesional (3-5 minutos)</span>
+                            </li>
+                            <li class="feature-item">
+                                <i class="fas fa-palette"></i>
+                                <span>Edición creativa avanzada</span>
+                            </li>
+                            <li class="feature-item">
+                                <i class="fas fa-gift"></i>
+                                <span>Album físico de lujo</span>
+                            </li>
+                            <li class="feature-item">
+                                <i class="fas fa-headset"></i>
+                                <span>Soporte prioritario 24/7</span>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="package-cta">
+                    <a href="agendar.html?paquete=premium" class="btn btn-primary btn-package">
+                        <i class="fas fa-crown"></i>
+                        Elegir Plan
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- COMPARACIÓN DE PAQUETES -->
+    <section class="comparison-section">
+        <div class="container">
+            <div class="section-header">
+                <h2>Comparación de Paquetes</h2>
+                <p>Encuentra el paquete que mejor se adapte a tus necesidades</p>
+            </div>
+            <div class="comparison-table">
+                <div class="comparison-header">
+                    <div class="comparison-cell feature">Características</div>
+                    <div class="comparison-cell">Esencial</div>
+                    <div class="comparison-cell">Profesional</div>
+                    <div class="comparison-cell">Premium</div>
+                </div>
+                <div class="comparison-row">
+                    <div class="comparison-item feature">Horas de sesión</div>
+                    <div class="comparison-item">2 horas</div>
+                    <div class="comparison-item">4 horas</div>
+                    <div class="comparison-item">6 horas</div>
+                </div>
+                <div class="comparison-row">
+                    <div class="comparison-item feature">Fotos editadas</div>
+                    <div class="comparison-item">25 fotos</div>
+                    <div class="comparison-item">50 fotos</div>
+                    <div class="comparison-item">80 fotos</div>
+                </div>
+                <div class="comparison-row">
+                    <div class="comparison-item feature">Cambios de outfit</div>
+                    <div class="comparison-item">1 cambio</div>
+                    <div class="comparison-item">3 cambios</div>
+                    <div class="comparison-item">5 cambios</div>
+                </div>
+                <div class="comparison-row">
+                    <div class="comparison-item feature">Video incluido</div>
+                    <div class="comparison-item"><i class="fas fa-times"></i></div>
+                    <div class="comparison-item"><i class="fas fa-check"></i></div>
+                    <div class="comparison-item"><i class="fas fa-check"></i></div>
+                </div>
+                <div class="comparison-row">
+                    <div class="comparison-item feature">Fotos impresas</div>
+                    <div class="comparison-item"><i class="fas fa-times"></i></div>
+                    <div class="comparison-item"><i class="fas fa-check"></i></div>
+                    <div class="comparison-item"><i class="fas fa-check"></i></div>
+                </div>
+                <div class="comparison-row">
+                    <div class="comparison-item feature">Album físico</div>
+                    <div class="comparison-item"><i class="fas fa-times"></i></div>
+                    <div class="comparison-item"><i class="fas fa-times"></i></div>
+                    <div class="comparison-item"><i class="fas fa-check"></i></div>
+                </div>
+                <div class="comparison-row">
+                    <div class="comparison-item feature">Asistente incluido</div>
+                    <div class="comparison-item"><i class="fas fa-times"></i></div>
+                    <div class="comparison-item"><i class="fas fa-times"></i></div>
+                    <div class="comparison-item"><i class="fas fa-check"></i></div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- SECCIÓN GARANTÍA -->
+    <section class="guarantee-section">
+        <div class="guarantee-content">
+            <div class="guarantee-icon">
+                <i class="fas fa-shield-alt"></i>
+            </div>
+            <h2 class="guarantee-title">Garantía de Satisfacción</h2>
+            <p class="guarantee-text">
+                Tu satisfacción es nuestra prioridad. Si no estás contento con los resultados, 
+                te ofrecemos una sesión de re-take completamente gratis. Trabajamos contigo 
+                hasta que ames cada una de tus fotos.
+            </p>
+            <a href="contacto.html" class="btn btn-outline">
+                <i class="fas fa-comments"></i>
+                Consultar Personalización
+            </a>
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer id="contacto">
+        <div class="footer-content">
+            <div class="footer-section">
+                <h3>Fredy Culqui</h3>
+                <p>Fotógrafo & Filmmaker profesional especializado en contar historias a través de la imagen.</p>
+                <div class="social-links">
+                    <a href="https://www.instagram.com/fredy_culqui" target="_blank">
+                        <i class="fab fa-instagram"></i>
+                    </a>
+                    <a href="https://www.tiktok.com/@fredy_culqui" target="_blank">
+                        <i class="fab fa-tiktok"></i>
+                    </a>
+                    <a href="mailto:fredyculqui@gmail.com">
+                        <i class="fas fa-envelope"></i>
+                    </a>
+                    <a href="https://wa.me/51967620685" target="_blank">
+                        <i class="fab fa-whatsapp"></i>
+                    </a>
+                </div>
+            </div>
+
+            <div class="footer-section">
+                <h4>Enlaces Rápidos</h4>
+                <ul>
+                    <li><a href="index.html">Inicio</a></li>
+                    <li><a href="sobre-mi.html">Sobre Mí</a></li>
+                    <li><a href="portafolio.html">Portafolio</a></li>
+                    <li><a href="paquetes.html">Paquetes</a></li>
+                    <li><a href="agendar.html">Agendar Sesión</a></li>
+                    <li><a href="contacto.html">Contacto</a></li>
+                </ul>
+            </div>
+
+            <div class="footer-section">
+                <h4>Servicios</h4>
+                <ul>
+                    <li><a href="portafolio.html?filter=retratos">Retratos</a></li>
+                    <li><a href="portafolio.html?filter=artistico">Artístico</a></li>
+                    <li><a href="portafolio.html?filter=15-anos">15 Años</a></li>
+                    <li><a href="portafolio.html?filter=audiovisual">Audiovisual</a></li>
+                </ul>
+            </div>
+
+            <div class="footer-section">
+                <h4>Contacto</h4>
+                <div class="contact-info">
+                    <p><i class="fas fa-envelope"></i> fredyculqui@gmail.com</p>
+                    <p><i class="fas fa-phone"></i> +51 967 620 685</p>
+                    <p><i class="fas fa-map-marker-alt"></i> Cajamarca, Perú</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="footer-bottom">
+            <p>&copy; 2025 Fredy Culqui. Todos los derechos reservados.</p>
+        </div>
+    </footer>
+
+    <script src="js/main.js"></script>
+</body>
+</html>
